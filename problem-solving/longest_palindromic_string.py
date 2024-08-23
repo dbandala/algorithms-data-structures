@@ -1,3 +1,5 @@
+# Leetcode 5. Longest Palindromic Substring
+# Given a string s, return the longest palindromic substring in s.
 # Write a function in Python that takes a string as input and returns the longest palindromic substring within the string. For example, given the input "babad", the function should return "bab" or "aba". If there are multiple solutions, return any of them.
 
 # The function signature is:
