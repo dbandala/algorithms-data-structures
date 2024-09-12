@@ -16,6 +16,7 @@ class Solution(object):
         dist = [0] * n
         dist[start_node] = 1
         
+        # Bellman-Ford algorithm
         for _ in range(n - 1):
             updated = False
             for i, (u, v) in enumerate(edges):
