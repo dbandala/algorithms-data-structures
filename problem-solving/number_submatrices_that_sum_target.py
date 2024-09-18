@@ -31,5 +31,11 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        
+        # first approach: brute force
+        # Time complexity: O(N^3)
+        # iterate through the matrix and calculate the submatrix sum
+        for i in range(len(matrix)):
+            sum = 0
+            for j in range(1, len(matrix[0])):
+                sum += matrix[i][j] += matrix[i][j-1]
 
