@@ -34,8 +34,22 @@ class Solution(object):
         # first approach: brute force
         # Time complexity: O(N^3)
         # iterate through the matrix and calculate the submatrix sum
-        for i in range(len(matrix)):
-            sum = 0
-            for j in range(1, len(matrix[0])):
-                sum += matrix[i][j] += matrix[i][j-1]
+
+        # second approach: prefix sum
+        # Time complexity: O(N^2)
+        # Space complexity: O(N^2)
+        # iterate through the matrix and calculate the prefix sum
+
+        # third approach: prefix sum + hashmap
+        # Time complexity: O(N^2)
+        # Space complexity: O(N)
+        # iterate through the matrix and calculate the prefix sum
+        # use a hashmap to store the prefix sum and the count of the prefix sum
+
+        m, n = len(matrix), len(matrix[0])
+        prefix_sum = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # calculate the prefix sum
+        
+        
 
