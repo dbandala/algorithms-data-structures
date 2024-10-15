@@ -1,5 +1,6 @@
 #!/bin/python3
 
+# Amazaon interview question
 # Complete the 'findRequestsInQueue' function below.
 #
 # The function is expected to return an INTEGER_ARRAY.
@@ -21,9 +22,8 @@ def findRequestsInQueue(wait):
     while len(wait)>0:
         wait.pop(0)
         for i in range(len(wait)):
-            if i in wait:
-                if wait[i]<=time:
-                    del wait[i]
+            if i in wait and wait[i]<=time:
+                del wait[i]
         
         request_in_queue.append(len(wait))
         time += 1

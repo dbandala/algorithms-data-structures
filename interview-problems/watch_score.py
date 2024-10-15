@@ -1,5 +1,6 @@
 #!/bin/python3
 
+# Amazaon interview question
 # Complete the 'getMinScore' function below.
 #
 # The function is expected to return an INTEGER.
