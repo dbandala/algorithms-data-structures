@@ -15,5 +15,5 @@ def quick_sort(arr):
     return quick_sort(left) + middle + quick_sort(right)
 
 # Test cases
-my_list = [5, 3, 8, 6, 7, 2]
-print(quick_sort(my_list)) # [2, 3, 5, 6, 7, 8]
+my_list = [5, 3, 8, 6, 7, 2, 6, 2, 8, 8, 1, 4]
+print(quick_sort(my_list)) # [1, 2, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8]
