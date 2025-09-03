@@ -49,17 +49,50 @@ class Solution(object):
             new_improvement = self.calculate_pass_ratio(pass_students, total_students)
             heapq.heappush(heap, (-new_improvement, pass_students, total_students))
 
-        print("heap: ", heap)
+        # print("heap: ", heap)
 
         # Calculate the final average pass ratio
-        total_pass_ratio = sum(pass_students / total_students for _, pass_students, total_students in heap)
+        total_pass_ratio = sum(1.0 * pass_students / total_students for _, pass_students, total_students in heap)
         return total_pass_ratio / len(classes)
     
     def calculate_pass_ratio(self, pass_students, total_students):
-        return (pass_students + 1) / (total_students + 1) - pass_students / total_students
+        return (1.0 * (pass_students + 1) / (total_students + 1)) - (1.0 * pass_students / total_students)
 
 # This algorithm has a complexity of O(n log n) due to the heap operations.
+
+
+class SolutionWithoutHeap(object):
+    def maxAverageRatio(self, classes, extraStudents):
+        """
+        :type classes: List[List[int]]
+        :type extraStudents: int
+        :rtype: float
+        """
+        total_pass_ratio = 0
+        for pass_students, total_students in classes:
+            total_pass_ratio += pass_students / total_students
+
+        # Distribute extra students evenly
+        while extraStudents > 0:
+            for i in range(len(classes)):
+                if extraStudents == 0:
+                    break
+                classes[i][0] += 1
+                classes[i][1] += 1
+                extraStudents -= 1
+
+        # Calculate the final average pass ratio
+        total_pass_ratio = sum(pass_students / total_students for pass_students, total_students in classes)
+        return total_pass_ratio / len(classes)
+    """
+        This algorithm has a complexity of O(n) due to the simple iteration and arithmetic operations.
+    """
+
 
 # Test Cases
 print(Solution().maxAverageRatio([[1,2],[3,5],[2,2]], 2))  # Expected output: 0.78333
 print(Solution().maxAverageRatio([[2,4],[3,9],[4,5],[2,10]], 4))  # Expected output: 0.53485
+
+
+print(SolutionWithoutHeap().maxAverageRatio([[1,2],[3,5],[2,2]], 2))  # Expected output: 0.78333
+print(SolutionWithoutHeap().maxAverageRatio([[2,4],[3,9],[4,5],[2,10]], 4))  # Expected output: 0.53485

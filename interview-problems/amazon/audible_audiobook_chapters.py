@@ -21,3 +21,8 @@ class Audiobook:
 
     def get_all_chapters(self):
         return self.chapters
+
+    def delete_chapter(self, title):
+        chapter = self.chapter_map.pop(title, None)
+        if chapter:
+            self.chapters.remove(chapter)
