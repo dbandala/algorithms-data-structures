@@ -55,5 +55,23 @@ class Solution2(object):
         return len(concat_string) == 9 and '0' not in concat_string and len(set(concat_string)) == 9
 
 sol = Solution()
-print(sol.isFascinating(192))
-print(sol.isFascinating(783))
+print(sol.isFascinating(192)) # True
+print(sol.isFascinating(783)) # True
+
+# exmamples with zeros
+print(sol.isFascinating(100)) # False
+print(sol.isFascinating(101)) # False
+
+# examples with repeated digits
+print(sol.isFascinating(123)) # False
+print(sol.isFascinating(321)) # False
+
+# examples hard true
+print(sol.isFascinating(327)) # True
+print(sol.isFascinating(327)) # True
+
+# hard examples
+print(sol.isFascinating(100)) # False
+print(sol.isFascinating(123)) # False
+print(sol.isFascinating(321)) # False
+
