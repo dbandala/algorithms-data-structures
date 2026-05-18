@@ -47,4 +47,8 @@ sol = Solution()
 print(sol.greedy([5, 1, 3, 4, 1])) # 250
 print(sol.greedy([1, 1, 1, 3, 1])) # 1100
 
-
+# hard examples
+print(sol.greedy([2, 4, 4, 5, 4])) # 450
+print(sol.greedy([1, 5, 1, 2, 4])) # 250
+print(sol.greedy([1, 1, 1, 1, 1])) # 1200
+print(sol.greedy([5, 5, 5, 5, 5])) # 600
