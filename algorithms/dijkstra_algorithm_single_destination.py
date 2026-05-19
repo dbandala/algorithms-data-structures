@@ -35,6 +35,7 @@ class Graph:
         for _ in range(self.size):
             min_distance = float('inf')
             u = None
+            # print(distances)
             for i in range(self.size):
                 if not visited[i] and distances[i] < min_distance:
                     min_distance = distances[i]
