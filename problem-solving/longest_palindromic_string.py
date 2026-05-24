@@ -13,7 +13,7 @@ def longest_palindromic_substring(s: str) -> str:
             if s[i:j+1] == s[i:j+1][::-1]:
                 return s[i:j+1]
             
-
+# complexity: O(n^2)
 def longest_palindromic_substring(s: str) -> str:
     def expand_around_center(left, right):
         while left >= 0 and right < len(s) and s[left] == s[right]:
