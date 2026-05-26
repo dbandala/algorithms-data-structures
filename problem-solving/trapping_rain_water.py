@@ -8,9 +8,7 @@ class Solution(object):
         :rtype: int
         """
         # verify edge cases
-        if len(height) == 0:
-            return 0
-        if len(height) == 1:
+        if len(height) < 2:
             return 0
         
         # initialize variables
@@ -34,11 +32,51 @@ class Solution(object):
 
         print("height: ", height)
 
+        water_path = []
         # calculate the water
         for i in range(len(height)):
             water += min(left_max[i], right_max[i]) - height[i]
+            water_path.append(min(left_max[i], right_max[i]) - height[i])
+
+        print("water_path: ", water_path)
         return water
-    
+
+    def trap_two_pointers(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        if not height:
+            return 0
+        if len(height) < 2:
+            return 0
+
+        left, right = 0, len(height)-1
+        left_max, right_max = 0, 0
+        water = 0
+
+        while left<right:
+            # if the left height is less than the right height, we can trap water on the left
+            if height[left]<height[right]:
+                # update the left max
+                if height[left]>=left_max:
+                    left_max = height[left]
+                else:
+                    # trap water on the left
+                    water += left_max - height[left]
+                left += 1
+            else:
+                # if the right height is less than the left height, we can trap water on the right
+                if height[right]>=right_max:
+                    # update the right max
+                    right_max = height[right]
+                else:
+                    # trap water on the right
+                    water += right_max - height[right]
+                right -= 1
+        return water
+
 # Test cases
 sol = Solution()
 print(sol.trap([0,1,0,2,1,0,1,3,2,1,2,1])) # 6
+print(sol.trap_two_pointers([0,1,0,2,1,0,1,3,2,1,2,1])) # 6
