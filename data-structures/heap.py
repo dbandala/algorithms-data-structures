@@ -5,6 +5,8 @@
 # left_child_index = parent_index * 2
 # right_child_index = parent_index * 2 + 1
 
+# time complexity O(log(n)) for insert and remove
+# space complexity O(n)
 class MaxHeap:
     def __init__(self):
         self.heap = []
