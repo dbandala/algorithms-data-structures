@@ -27,6 +27,8 @@
 import heapq
 import math
 
+# time complexity O(n log(k)) because we are pushing and popping at most k elements into the heapß
+# space complexity O(k)
 class Solution(object):
     def closestPoints(self, points, k):
         """

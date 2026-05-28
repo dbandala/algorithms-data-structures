@@ -25,7 +25,7 @@
 # newInterval.length == 2
 # 0 <= start <= end <= 105
 
-
+# complexity: O(n)
 class Solution(object):
     def nonOverlappingIntervals(self, intervals: list[list[int]], new_interval: list[int]):
         """
