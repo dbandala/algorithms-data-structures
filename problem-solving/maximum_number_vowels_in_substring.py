@@ -105,6 +105,27 @@ class CleverSolution(object):
         return ret
 
 
+class OptimizedSolution(object):
+    def maxVowels(self, s, k):
+        """
+        type s: string
+        type k: int
+        rtype: int
+        """
+        vowels = "AEIOUaeiou"
+        window_vowels = sum(1 for c in s[:k] if c in vowels) # count the number of vowels in the first window
+
+        max_vowels = window_vowels
+        for i in range(k, len(s)):
+            if s[i-k] in vowels:
+                window_vowels -= 1
+            if s[i] in vowels:
+                window_vowels += 1
+            max_vowels = max(max_vowels, window_vowels)
+
+        return max_vowels
+
+
 # Test cases
 sol = Solution()
 print(sol.maxVowels("abciiidef", 3)) # 3
