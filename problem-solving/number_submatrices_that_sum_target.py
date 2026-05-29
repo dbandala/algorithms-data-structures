@@ -23,33 +23,70 @@
 # -1000 <= matrix[i][j] <= 1000
 # -10^8 <= target <= 10^8
 
+from collections import defaultdict
+
 
 class Solution(object):
     def numSubmatrixSumTarget(self, matrix, target):
         """
+        Return how many non-empty submatrices sum to ``target``.
+
+        For each top/bottom row pair, treat column totals between those rows as a
+        one-dimensional array; each valid vertical strip becomes counting subarrays
+        with sum ``target`` (prefix sums + frequency map).
+
+        Time complexity: O(rows^2 * cols). Space complexity: O(cols).
+
         :type matrix: List[List[int]]
         :type target: int
         :rtype: int
         """
-        # first approach: brute force
-        # Time complexity: O(N^3)
-        # iterate through the matrix and calculate the submatrix sum
+        rows, cols = len(matrix), len(matrix[0])
+        count = 0
 
-        # second approach: prefix sum
-        # Time complexity: O(N^2)
-        # Space complexity: O(N^2)
-        # iterate through the matrix and calculate the prefix sum
+        for top in range(rows):
+            column_sums = [0] * cols
+            for bottom in range(top, rows):
+                for c in range(cols):
+                    column_sums[c] += matrix[bottom][c]
+                # column_sums is a 1D array of the sum of the submatrix from the top to the bottom row
+                # column_sums[0] = matrix[top][0] + matrix[top+1][0] + ... + matrix[bottom][0]
+                # column_sums[1] = matrix[top][1] + matrix[top+1][1] + ... + matrix[bottom][1]
+                # ...
+                # column_sums[cols-1] = matrix[top][cols-1] + matrix[top+1][cols-1] + ... + matrix[bottom][cols-1]
+                # we can treat this as a 1D array and use the _count_subarrays_with_sum function to count the number of subarrays that sum to target
+                count += self._count_subarrays_with_sum(column_sums, target)
 
-        # third approach: prefix sum + hashmap
-        # Time complexity: O(N^2)
-        # Space complexity: O(N)
-        # iterate through the matrix and calculate the prefix sum
-        # use a hashmap to store the prefix sum and the count of the prefix sum
+        return count
 
-        m, n = len(matrix), len(matrix[0])
-        prefix_sum = [[0] * (n + 1) for _ in range(m + 1)]
+    def _count_subarrays_with_sum(self, nums, target):
+        """
+        Count contiguous subarrays of ``nums`` whose sum equals ``target``.
 
-        # calculate the prefix sum
-        
-        
+        Maintains a running prefix sum and a map from prefix value to how many
+        times it has appeared; ``prefix - target`` lookups count valid endings.
 
+        Time complexity: O(len(nums)). Space complexity: O(len(nums)) in the worst case.
+
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        prefix_count = defaultdict(int)
+        prefix_count[0] = 1
+        prefix = 0
+        result = 0
+
+        for value in nums:
+            prefix += value
+            result += prefix_count[prefix - target]
+            prefix_count[prefix] += 1
+
+        return result
+
+
+# Test cases
+sol = Solution()
+print(sol.numSubmatrixSumTarget([[0, 1, 0], [1, 1, 1], [0, 1, 0]], 0))  # 4
+print(sol.numSubmatrixSumTarget([[1, -1], [-1, 1]], 0))  # 5
+print(sol.numSubmatrixSumTarget([[904]], 0))  # 0
