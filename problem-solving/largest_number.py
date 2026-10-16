@@ -49,4 +49,5 @@ print(s.largestNumber([3,30,34,5,9])) # "9534330"
 print(s.largestNumber([0,0])) # "0"
 print(s.largestNumber([0,0,0])) # "0"
 print(s.largestNumber([0,0,1])) # "100"
+print(s.largestNumber([2,3,1])) # "321"
 

@@ -45,6 +45,7 @@ class Solution(object):
         m = len(rolls)
         sum_m = sum(rolls)
 
+        # calculate the sum of all missing rolls
         sum_n = mean * (m + n) - sum_m
 
         # check if the sum of all missing rolls is valid (between 1 and 6 * n inclusive for each dice side)
@@ -63,7 +64,7 @@ class Solution(object):
             # dividing number
             div_num = (n - (i + 1))
             if div_num != 0:
-                avg_n = sum_n / (n - (i + 1))
+                avg_n = sum_n / div_num
 
         return missing_rolls
     
