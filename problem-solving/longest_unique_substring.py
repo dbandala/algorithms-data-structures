@@ -36,12 +36,13 @@ class Solution(object):
         left = 0
         
         for right in range(n):
-            if s[right] not in charMap or charMap[s[right]] < left:
-                charMap[s[right]] = right
+            c = s[right]
+            if c not in charMap or charMap[c] < left:
+                charMap[c] = right
                 maxLength = max(maxLength, right - left + 1)
             else:
-                left = charMap[s[right]] + 1
-                charMap[s[right]] = right
+                left = charMap[c] + 1
+                charMap[c] = right
         
         print(charMap)
         return maxLength
@@ -74,7 +75,7 @@ class Solution2(object):
         return maxLength
 
 # Test cases
-sol = Solution2()
+sol = Solution()
 s = "abcabcbb"
 print(sol.lengthOfLongestSubstring(s)) # 3
 # s = "bbbbb"

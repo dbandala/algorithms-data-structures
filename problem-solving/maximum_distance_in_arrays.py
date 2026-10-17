@@ -7,6 +7,7 @@ class Solution(object):
     def maxDistance(self, arrays):
         """
         :type arrays: List[List[int]]
+            eg [[1,2,3],[4,5],[1,2,3]]
         :rtype: int
         """
         if not arrays:

@@ -1,3 +1,4 @@
+# Leetcode 200 Problem: Number of Islands
 # Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 # An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 
@@ -21,9 +22,11 @@ class Solution(object):
         for i in range(len(grid)):
             row_sum = sum([int(x) for x in grid[i]])
             for j in range(len(grid[0])):
+                # this prevents unnecessary DFS calls if the entire row has already been visited
                 visited_sum = sum([int(x) for x in self.visited[i]])
                 if row_sum == visited_sum:
                     break
+                # if the current cell is land and hasn't been visited, we start a DFS from here
                 if grid[i][j] == '1' and not self.visited[i][j]:
                     islands += 1
                     self.dfs(i, j)
